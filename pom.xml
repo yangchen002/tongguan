@@ -12,6 +12,13 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+<!--        gateway routes-->
+<!--        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>-->
+<!--        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>-->
+<!--        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>-->
+
+<!--        nacos打印心跳日志-->
+<!--        gateway route-->
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>

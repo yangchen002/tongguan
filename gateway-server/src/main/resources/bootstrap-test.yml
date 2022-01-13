@@ -5,7 +5,7 @@ spring:
         server-addr: 192.168.1.138:8848
         file-extension: yaml
         namespace: 2d0a8443-cbac-49a8-bbba-eec77fd09400
-        group: DEFAULT_GROUP
+        group: GATEWAY_GROUP
       discovery:
         server-addr: 192.168.1.138:8848
         namespace: 2d0a8443-cbac-49a8-bbba-eec77fd09400
