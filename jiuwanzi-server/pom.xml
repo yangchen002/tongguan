@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.fwkt</groupId>
-    <artifactId>jiuwanzi</artifactId>
+    <artifactId>jiuwanzi-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>jiuwanzi</name>
