@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      route:
+        - id: jiuwanzi-server
+          uri: lb://jiuwanzi
+          predicates:
+            - Path=/jiuwanzi/**
+        - id: gateway-server
+          uri: lb://gateway
+          predicates:
+            - Path=/gateway/**
+
+
+
