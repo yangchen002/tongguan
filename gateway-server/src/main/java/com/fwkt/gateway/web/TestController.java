@@ -1,4 +1,4 @@
-package com.fwkt.jiuwanzi.web;
+package com.fwkt.gateway.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +15,6 @@ public class TestController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "hello word1111111111111!";
+        return "hello word!2222222222";
     }
 }

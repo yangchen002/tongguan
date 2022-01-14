@@ -17,6 +17,7 @@
 
     <dependencies>
         <!-- SpringCloud Gateway -->
+        <!--注意:cloud gateway 不能和spring-web混合使用，cloud gateway采用的webflux技术，不能再引入spring-web包-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -32,6 +33,11 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
     </dependencies>
 
