@@ -1,5 +1,6 @@
 package com.fwkt.gateway.config;
 
+import com.fwkt.gateway.manager.AdminLoginAuthenticationManager;
 import com.fwkt.gateway.manager.BearerTokenReactiveAuthenticationManager;
 import com.fwkt.gateway.manager.LoginAuthenticationManager;
 import com.fwkt.gateway.security.convert.ServerHttpBearerAuthenticationConverter;
@@ -92,7 +93,7 @@ public class SecurityConfig {
         //自定义登录
         managers.add(loginAuthenticationManager());
         //管理员用户密码登录
-        //managers.add(adminLoginAuthenticationManager());
+        managers.add(adminLoginAuthenticationManager());
 
         return new DelegatingReactiveAuthenticationManager(managers);
     }
@@ -100,6 +101,11 @@ public class SecurityConfig {
     @Bean
     public LoginAuthenticationManager loginAuthenticationManager() {
         return new LoginAuthenticationManager();
+    }
+
+    @Bean
+    public AdminLoginAuthenticationManager adminLoginAuthenticationManager() {
+        return new AdminLoginAuthenticationManager();
     }
 
     @Bean

@@ -3,6 +3,7 @@ package com.fwkt.gateway.jwt.service;
 import com.fwkt.gateway.jwt.domain.PayloadDto;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.jwk.RSAKey;
+import org.springframework.security.core.Authentication;
 
 import java.text.ParseException;
 
@@ -62,4 +63,6 @@ public interface JwtTokenService {
      * @return
      */
     RSAKey getDefaultRSAKey();
+
+    PayloadDto getPayloadDto(Authentication authentication);
 }

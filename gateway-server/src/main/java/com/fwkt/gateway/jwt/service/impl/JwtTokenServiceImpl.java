@@ -3,6 +3,7 @@ package com.fwkt.gateway.jwt.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
+import com.fwkt.gateway.entity.AuthUserDetails;
 import com.fwkt.gateway.jwt.domain.PayloadDto;
 import com.fwkt.gateway.jwt.exception.JwtExpiredException;
 import com.fwkt.gateway.jwt.exception.JwtInvalidException;
@@ -14,6 +15,8 @@ import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +24,10 @@ import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * JWT处理业务类
@@ -125,5 +130,25 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         //获取RSA私钥
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         return new RSAKey.Builder(publicKey).privateKey(privateKey).build();
+    }
+
+    @Override
+    public PayloadDto getPayloadDto(Authentication authentication) {
+        Date now = new Date();
+        Date exp = DateUtil.offsetSecond(now, 60*60);
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        return PayloadDto.builder()
+                .sub(((AuthUserDetails) authentication.getPrincipal()).getUserid())
+                .iat(now.getTime())
+                .exp(exp.getTime())
+                .jti(UUID.randomUUID().toString())
+                .username(((AuthUserDetails) authentication.getPrincipal()).getUsername())
+                .authorities(CollUtil.toList(
+                        authorities.stream()
+                                .map(GrantedAuthority.class::cast)
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.joining(",")))
+                        )
+                .build();
     }
 }
